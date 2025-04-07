@@ -1,0 +1,8 @@
+{
+  "appId": "com.jasonharrell.exposurecalculator",
+  "appName": "Exposure Calculator",
+  "webDir": "www",
+  "server": {
+    "url": "https://github.com/programmingstranger/exposure-calculator/blob/main/ec.html"
+  }
+}
