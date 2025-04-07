@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" class=" dxfvh idc0_350"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposure Calculator</title>
+    <link href="ec_files/css2.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Encode Sans', sans-serif;
+            background-color: white;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        label {
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        input,
+        select {
+            margin-bottom: 1rem;
+            padding: 0.4rem;
+            width: 150px;
+            font-size: 1rem;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        button {
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            margin: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Exposure Calculator</h1>
+
+    <div class="container">
+        <div class="column">
+            <h2>Original Exposure</h2>
+            <label for="shutter-original">Shutter Speed</label>
+            <select id="shutter-original">
+                <option value="0.000125">1/8000</option>
+                <option value="0.00025">1/4000</option>
+                <option value="0.0005">1/2000</option>
+                <option value="0.001">1/1000</option>
+                <option value="0.002">1/500</option>
+                <option value="0.004" selected="selected">1/250</option>
+                <option value="0.008">1/125</option>
+                <option value="0.016">1/60</option>
+                <option value="0.033">1/30</option>
+                <option value="0.066">1/15</option>
+                <option value="0.125">1/8</option>
+                <option value="0.25">1/4</option>
+                <option value="0.5">1/2</option>
+                <option value="1">1"</option>
+                <option value="2">2"</option>
+                <option value="4">4"</option>
+                <option value="8">8"</option>
+                <option value="15">15"</option>
+                <option value="30">30"</option>
+                <option value="60">1 min</option>
+                <option value="120">2 min</option>
+                <option value="240">4 min</option>
+                <option value="480">8 min</option>
+                <option value="960">16 min</option>
+                <option value="1920">32 min</option>
+                <option value="3840">1 hour</option>
+            </select>
+
+            <label for="fstop-original">F-Stop (f/)</label>
+            <select id="fstop-original"><option value="1">1</option><option value="1.1">1.1</option><option value="1.2">1.2</option><option value="1.4">1.4</option><option value="1.6">1.6</option><option value="1.8">1.8</option><option value="2">2</option><option value="2.2">2.2</option><option value="2.5">2.5</option><option value="2.8" selected="selected">2.8</option><option value="3.2">3.2</option><option value="3.5">3.5</option><option value="4">4</option><option value="4.5">4.5</option><option value="5">5</option><option value="5.6">5.6</option><option value="6.3">6.3</option><option value="7.1">7.1</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="13">13</option><option value="14">14</option><option value="16">16</option><option value="18">18</option><option value="20">20</option><option value="22">22</option><option value="25">25</option><option value="28">28</option><option value="32">32</option></select>
+
+            <label for="iso-original">ISO</label>
+            <input type="number" id="iso-original" step="1" value="100">
+
+            <p id="ev-info">EV (ISO 100): 10.94</p>
+            <div class="button-container">
+                <button id="reset-btn">Reset</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <h2>Adjust Shutter Speed</h2>
+            <label for="shutter-new">Shutter Speed</label>
+            <input type="text" id="shutter-new" readonly="readonly">
+
+            <label for="fstop-new-shutter">F-Stop (f/)</label>
+            <select id="fstop-new-shutter"><option value="1">1</option><option value="1.1">1.1</option><option value="1.2">1.2</option><option value="1.4">1.4</option><option value="1.6">1.6</option><option value="1.8">1.8</option><option value="2">2</option><option value="2.2">2.2</option><option value="2.5">2.5</option><option value="2.8" selected="selected">2.8</option><option value="3.2">3.2</option><option value="3.5">3.5</option><option value="4">4</option><option value="4.5">4.5</option><option value="5">5</option><option value="5.6">5.6</option><option value="6.3">6.3</option><option value="7.1">7.1</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="13">13</option><option value="14">14</option><option value="16">16</option><option value="18">18</option><option value="20">20</option><option value="22">22</option><option value="25">25</option><option value="28">28</option><option value="32">32</option></select>
+
+            <label for="iso-new-shutter">ISO</label>
+            <input type="number" id="iso-new-shutter" step="1" value="100">
+
+            <div class="button-container">
+                <button id="calculate-shutter-btn">Calculate Shutter Speed</button>
+            </div>
+        </div>
+
+        <div class="column">
+            <h2>Adjust F-Stop</h2>
+            <label for="shutter-new-fstop">Shutter Speed</label>
+            <select id="shutter-new-fstop">
+                <option value="0.000125">1/8000</option>
+                <option value="0.00025">1/4000</option>
+                <option value="0.0005">1/2000</option>
+                <option value="0.001">1/1000</option>
+                <option value="0.002">1/500</option>
+                <option value="0.004" selected="selected">1/250</option>
+                <option value="0.008">1/125</option>
+                <option value="0.016">1/60</option>
+                <option value="0.033">1/30</option>
+                <option value="0.066">1/15</option>
+                <option value="0.125">1/8</option>
+                <option value="0.25">1/4</option>
+                <option value="0.5">1/2</option>
+                <option value="1">1"</option>
+                <option value="2">2"</option>
+                <option value="4">4"</option>
+                <option value="8">8"</option>
+                <option value="15">15"</option>
+                <option value="30">30"</option>
+                <option value="60">1 min</option>
+                <option value="120">2 min</option>
+                <option value="240">4 min</option>
+                <option value="480">8 min</option>
+                <option value="960">16 min</option>
+                <option value="1920">32 min</option>
+                <option value="3840">1 hour</option>
+            </select>
+
+            <label for="fstop-new-fstop">F-Stop (f/)</label>
+            <input type="text" id="fstop-new-fstop" readonly="readonly">
+
+            <label for="iso-new-fstop">ISO</label>
+            <input type="number" id="iso-new-fstop" step="1" value="100">
+
+            <div class="button-container">
+                <button id="calculate-fstop-btn">Calculate F-Stop</button>
+            </div>
+        </div>
+        <div class="column">
+            <h2>Adjust ISO</h2>
+            <label for="shutter-new-iso">Shutter Speed</label>
+            <select id="shutter-new-iso">
+                <option value="0.000125">1/8000</option>
+                <option value="0.00025">1/4000</option>
+                <option value="0.0005">1/2000</option>
+                <option value="0.001">1/1000</option>
+                <option value="0.002">1/500</option>
+                <option value="0.004" selected="selected">1/250</option>
+                <option value="0.008">1/125</option>
+                <option value="0.016">1/60</option>
+                <option value="0.033">1/30</option>
+                <option value="0.066">1/15</option>
+                <option value="0.125">1/8</option>
+                <option value="0.25">1/4</option>
+                <option value="0.5">1/2</option>
+                <option value="1">1"</option>
+                <option value="2">2"</option>
+                <option value="4">4"</option>
+                <option value="8">8"</option>
+                <option value="15">15"</option>
+                <option value="30">30"</option>
+                <option value="60">1 min</option>
+                <option value="120">2 min</option>
+                <option value="240">4 min</option>
+                <option value="480">8 min</option>
+                <option value="960">16 min</option>
+                <option value="1920">32 min</option>
+                <option value="3840">1 hour</option>
+            </select>
+
+            <label for="fstop-new-iso">F-Stop (f/)</label>
+            <select id="fstop-new-iso"><option value="1">1</option><option value="1.1">1.1</option><option value="1.2">1.2</option><option value="1.4">1.4</option><option value="1.6">1.6</option><option value="1.8">1.8</option><option value="2">2</option><option value="2.2">2.2</option><option value="2.5">2.5</option><option value="2.8" selected="selected">2.8</option><option value="3.2">3.2</option><option value="3.5">3.5</option><option value="4">4</option><option value="4.5">4.5</option><option value="5">5</option><option value="5.6">5.6</option><option value="6.3">6.3</option><option value="7.1">7.1</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="13">13</option><option value="14">14</option><option value="16">16</option><option value="18">18</option><option value="20">20</option><option value="22">22</option><option value="25">25</option><option value="28">28</option><option value="32">32</option></select>
+
+            <label for="iso-new-iso">ISO</label>
+            <input type="text" id="iso-new-iso" readonly="readonly">
+
+            <div class="button-container">
+                <button id="calculate-iso-btn">Calculate ISO</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+     const standardShutterSpeeds = [
+        1 / 8000, 1 / 4000, 1 / 2000, 1 / 1000, 1 / 500, 1 / 250, 1 / 125, 1 / 60, 1 / 30, 1 / 15, 1 / 8, 1 / 4, 1 / 2, 1
+    ];
+
+    const halfStops = [
+        1, 1.1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.5, 2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22, 25, 28, 32
+    ];
+
+    function calculateEV(shutter, fstop) {
+        return Math.log2((fstop * fstop) / shutter);
+    }
+
+    function updateEVDisplay() {
+        const shutterOrig = parseFloat(document.getElementById('shutter-original').value);
+        const fstopOrig = parseFloat(document.getElementById('fstop-original').value);
+        if (!isNaN(shutterOrig) && !isNaN(fstopOrig) && shutterOrig > 0 && fstopOrig > 0) {
+            const EV = calculateEV(shutterOrig, fstopOrig);
+            document.getElementById('ev-info').textContent = `EV (ISO 100): ${EV.toFixed(2)}`;
+        } else {
+            document.getElementById('ev-info').textContent = `EV (ISO 100): --`;
+        }
+    }
+
+    function formatShutterSpeed(value) {
+        if (value < 1) {
+            // Find the closest standard shutter speed
+            let closest = standardShutterSpeeds.reduce((prev, curr) => Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev);
+            return `1/${Math.round(1 / closest)}`;
+        } else if (value < 60) {
+            return `${Math.round(value)} s`;
+        } else {
+            const minutes = Math.floor(value / 60);
+            const seconds = Math.round(value % 60);
+            return `${minutes}' ${seconds}"`;
+        }
+    }
+
+    function formatFStop(value) {
+        let closest = halfStops.reduce((prev, curr) => Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev);
+        return closest.toFixed(1);
+    }
+
+    function calculateShutterSpeed() {
+        const shutterOrig = parseFloat(document.getElementById('shutter-original').value);
+        const fstopOrig = parseFloat(document.getElementById('fstop-original').value);
+        const isoOrig = parseFloat(document.getElementById('iso-original').value);
+        const EV = calculateEV(shutterOrig, fstopOrig);
+
+        const isoNew = parseFloat(document.getElementById('iso-new-shutter').value);
+        const fstopNew = parseFloat(document.getElementById('fstop-new-shutter').value);
+
+        if (!isNaN(isoNew) && isoNew > 0 && !isNaN(fstopNew) && fstopNew > 0) {
+            const shutterNew = (fstopNew * fstopNew * isoOrig) / (isoNew * Math.pow(2, EV));
+            document.getElementById('shutter-new').value = formatShutterSpeed(shutterNew);
+        } else {
+            document.getElementById('shutter-new').value = "";
+        }
+    }
+
+    function calculateFStop() {
+        const shutterOrig = parseFloat(document.getElementById('shutter-original').value);
+        const fstopOrig = parseFloat(document.getElementById('fstop-original').value);
+        const isoOrig = parseFloat(document.getElementById('iso-original').value);
+        const EV = calculateEV(shutterOrig, fstopOrig);
+
+        const isoNew = parseFloat(document.getElementById('iso-new-fstop').value);
+        const shutterNew = parseFloat(document.getElementById('shutter-new-fstop').value);
+
+        if (!isNaN(isoNew) && isoNew > 0 && !isNaN(shutterNew) && shutterNew > 0) {
+            const fstopNew = Math.sqrt((shutterNew * isoNew * Math.pow(2, EV)) / isoOrig);
+            document.getElementById('fstop-new-fstop').value = formatFStop(fstopNew);
+        } else {
+            document.getElementById('fstop-new-fstop').value = "";
+        }
+    }
+
+    function calculateISO() {
+        const shutterOrig = parseFloat(document.getElementById('shutter-original').value);
+        const fstopOrig = parseFloat(document.getElementById('fstop-original').value);
+        const isoOrig = parseFloat(document.getElementById('iso-original').value);
+        const EV = calculateEV(shutterOrig, fstopOrig);
+
+        const shutterNew = parseFloat(document.getElementById('shutter-new-iso').value);
+        const fstopNew = parseFloat(document.getElementById('fstop-new-iso').value);
+
+        if (!isNaN(shutterNew) && shutterNew > 0 && !isNaN(fstopNew) && fstopNew > 0) {
+            let isoNew = (isoOrig * (fstopNew * fstopNew / shutterNew)) / (fstopOrig * fstopOrig / shutterOrig);
+            isoNew = roundToNearestHalfStop(isoNew);
+            document.getElementById('iso-new-iso').value = isoNew;
+        } else {
+            document.getElementById('iso-new-iso').value = "";
+        }
+    }
+
+    function roundToNearestHalfStop(value) {
+        const isoHalfStops = [
+            25, 32, 40, 50, 64, 80, 100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000, 5000, 6400, 8000, 10000, 12500, 16000, 20000, 25000, 32000, 40000, 50000, 64000, 80000, 100000, 125000, 160000, 200000, 250000, 320000, 400000, 500000, 640000, 800000, 1000000, 1250000, 1600000, 2000000, 2500000, 3200000, 4000000, 5000000, 6400000, 8000000, 10000000
+        ];
+        let closest = isoHalfStops.reduce((prev, curr) => Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev);
+        return closest;
+    }
+
+
+    document.getElementById('calculate-shutter-btn').addEventListener('click', calculateShutterSpeed);
+    document.getElementById('calculate-fstop-btn').addEventListener('click', calculateFStop);
+    document.getElementById('calculate-iso-btn').addEventListener('click', calculateISO);
+
+    document.getElementById('reset-btn').addEventListener('click', function() {
+        // Reset Original Exposure
+        document.getElementById('shutter-original').value = "0.004"; // 1/250 sec
+        document.getElementById('fstop-original').value = "2.8";
+        document.getElementById('iso-original').value = "100";
+
+        // Reset Adjust Shutter Speed
+        document.getElementById('shutter-new').value = "";
+        document.getElementById('fstop-new-shutter').value = "2.8";
+        document.getElementById('iso-new-shutter').value = "100";
+
+        // Reset Adjust F-Stop
+        document.getElementById('shutter-new-fstop').value = "0.004"; // 1/250
+        document.getElementById('fstop-new-fstop').value = "";
+        document.getElementById('iso-new-fstop').value = "100";
+
+        // Reset Adjust ISO
+        document.getElementById('shutter-new-iso').value = "0.004"; // 1/250
+        document.getElementById('fstop-new-iso').value = "2.8";
+        document.getElementById('iso-new-iso').value = "";
+
+        updateEVDisplay(); // Update the EV display after resetting the values
+    });
+
+    // Update EV display when original exposure values change
+    document.getElementById('shutter-original').addEventListener('input', updateEVDisplay);
+    document.getElementById('fstop-original').addEventListener('input', updateEVDisplay);
+    document.getElementById('iso-original').addEventListener('input', updateEVDisplay);
+
+    // Populate f-stop dropdowns with half-stop increments
+    document.querySelectorAll('select[id^="fstop"]').forEach(select => {
+        select.innerHTML = halfStops.map(fstop => `<option value="${fstop}">${fstop}</option>`).join('');
+    });
+
+    // Set initial default values
+    document.getElementById('fstop-new-shutter').value = "2.8";
+    document.getElementById('iso-new-shutter').value = "100";
+    document.getElementById('shutter-new-fstop').value = "0.004"; // Equivalent to 1/250
+    document.getElementById('iso-new-fstop').value = "100";
+    document.getElementById('shutter-new-iso').value = "0.004"; // Equivalent to 1/250
+    document.getElementById('fstop-new-iso').value = "2.8";
+
+    // Set initial default values for the original exposure
+    document.getElementById('shutter-original').value = "0.004"; // 1/250 sec
+    document.getElementById('fstop-original').value = "2.8";
+    document.getElementById('iso-original').value = "100";
+
+    updateEVDisplay();
+</script>
+    
+
+</body></html>
