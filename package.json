@@ -14,5 +14,13 @@
     "@capacitor/android": "^7.2.0",
     "@capacitor/cli": "^7.2.0",
     "@capacitor/core": "^7.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/programmingstranger/exposure-calculator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/programmingstranger/exposure-calculator/issues"
+  },
+  "homepage": "https://github.com/programmingstranger/exposure-calculator#readme"
 }
